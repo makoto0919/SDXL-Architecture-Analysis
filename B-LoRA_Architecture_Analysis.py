@@ -1,6 +1,11 @@
-import torch
+try:
+    import torch
+except ImportError as e:
+    raise ImportError(
+        "PyTorch is not installed. Please install the dependencies in requirements.txt"
+    ) from e
+
 from diffusers import StableDiffusionXLPipeline
-from tqdm import tqdm
 
 def inject_cross_attention_per_layer(pipe, embeddings_map: dict):
     handles = []
